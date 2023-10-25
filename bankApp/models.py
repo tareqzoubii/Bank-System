@@ -5,4 +5,4 @@ from django.db import models
 class SendMoney(models.Model):
     sender = models.CharField(max_length=255)
     receiver = models.CharField(max_length=255)
-    tha_amount = models.IntegerField()
+    the_amount = models.IntegerField()
