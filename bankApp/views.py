@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from rest_framework.generics import CreateAPIView
 from .models import SendMoney
-from rest_framework.generics import ListCreateAPIView
 from .serializers import SendMoneySerializer
-# Create your views here.
+from rest_framework.permissions import IsAuthenticated
 
-class SendMoneyCreateView(ListCreateAPIView):
+class SendMoneyView(CreateAPIView):
     queryset = SendMoney.objects.all()
     serializer_class = SendMoneySerializer
+    permission_classes = [IsAuthenticated]
