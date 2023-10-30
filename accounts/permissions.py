@@ -1,11 +1,5 @@
 # from rest_framework import permissions
 from rest_framework.permissions import BasePermission, SAFE_METHODS
-
-# class IsManager(BasePermission):
-#     def has_object_permission(self, request, view, obj):
-#         if request.method in SAFE_METHODS:
-#             return True
-#         return obj.role == request.Manager
 from rest_framework import permissions
 
 class IsManager(permissions.BasePermission):

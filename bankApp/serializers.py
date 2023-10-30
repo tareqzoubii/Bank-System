@@ -1,8 +1,10 @@
 from rest_framework import serializers
 from rest_framework.response import Response
-from .models import SendMoney
+from .models import SendMoney,LoanRequest
 from accounts.models import CustomUser
+from rest_framework.response import Response
 from rest_framework import status
+
 
 class SendMoneySerializer(serializers.Serializer):
     receiver_account_number = serializers.IntegerField()
@@ -29,3 +31,35 @@ class SendMoneySerializer(serializers.Serializer):
             return Response({'message': 'Money sent successfully'}, status=status.HTTP_200_OK)
         else:
             return Response({'message': 'Insufficient balance or invalid amount'}, status=status.HTTP_400_BAD_REQUEST)
+
+class LoanRequestSerializer(serializers.ModelSerializer):
+    user = serializers.StringRelatedField()
+    class Meta:
+        model = LoanRequest
+        fields = ['user','amount','period','loan_type']
+
+
+class LoanRequestListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LoanRequest
+        fields = '__all__'
+
+class LoanRequestDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LoanRequest
+        fields = '__all__'
+
+class UserLoanRequestDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LoanRequest
+        fields = '__all__'
+
+class UserLoanRequestUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LoanRequest
+        fields = ['amount','period','loan_type']
+
+# class AcceptedLoanSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = AcceptedLoan
+#         fields = '__all__'
