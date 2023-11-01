@@ -59,7 +59,12 @@ class UserLoanRequestUpdateSerializer(serializers.ModelSerializer):
         model = LoanRequest
         fields = ['amount','period','loan_type']
 
-# class AcceptedLoanSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = AcceptedLoan
-#         fields = '__all__'
+class AcceptedLoanSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LoanRequest
+        fields = ['id','user','amount','period','loan_type','is_approved']
+
+class AcceptedLoanDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = LoanRequest
+        fields = ['user','is_approved']

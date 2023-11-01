@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import SendMoneyView,LoanRequestView,LoanRequestListView,LoanRequestDetailView,UserLoanRequestDetailView,UserLoanRequestUpdateView
+from .views import SendMoneyView,LoanRequestView,LoanRequestListView,LoanRequestDetailView,UserLoanRequestDetailView,UserLoanRequestUpdateView,AcceptedLoanListView,AcceptedLoanDetailView
 
 urlpatterns = [
     path('send-money/', SendMoneyView.as_view()),
@@ -9,5 +9,6 @@ urlpatterns = [
     path('loan-requests/<pk>/', LoanRequestDetailView.as_view()),
     path('my-requests/', UserLoanRequestDetailView.as_view()),
     path('my-requests/<pk>/', UserLoanRequestUpdateView.as_view()),
-    # path('accepted-loans/', AcceptedLoanListView.as_view()),
+    path('accepted-loans/', AcceptedLoanListView.as_view()),
+    path('accepted-loans/<pk>/', AcceptedLoanDetailView.as_view()),
 ]
