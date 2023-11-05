@@ -17,8 +17,3 @@ class LoanRequest(models.Model):
     period = models.PositiveIntegerField()
     loan_type = models.CharField(max_length=20, choices=LOAN_TYPES)
     is_approved = models.BooleanField(default=False)
-
-
-# class AcceptedLoan(models.Model):
-#     loan_request = models.OneToOneField(LoanRequest, on_delete=models.CASCADE)
-#     is_approved = models.BooleanField(default=False)
