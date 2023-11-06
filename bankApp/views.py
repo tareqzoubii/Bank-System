@@ -1,6 +1,6 @@
 from rest_framework.generics import CreateAPIView,ListAPIView,RetrieveUpdateDestroyAPIView
 from .models import SendMoney,LoanRequest
-from .serializers import SendMoneySerializer,LoanRequestSerializer,LoanRequestListSerializer,LoanRequestDetailSerializer,UserLoanRequestDetailSerializer,UserLoanRequestUpdateSerializer,AcceptedLoanSerializer,AcceptedLoanDetailSerializer
+from .serializers import SendMoneySerializer,SendMoneyListSerializer,MySendMoneyListSerializer,LoanRequestSerializer,LoanRequestListSerializer,LoanRequestDetailSerializer,UserLoanRequestDetailSerializer,UserLoanRequestUpdateSerializer,AcceptedLoanSerializer,AcceptedLoanDetailSerializer
 from rest_framework.permissions import IsAuthenticated
 from accounts.permissions import IsManager
 
@@ -8,6 +8,19 @@ class SendMoneyView(CreateAPIView):
     queryset = SendMoney.objects.all()
     serializer_class = SendMoneySerializer
     permission_classes = [IsAuthenticated]
+
+class SendMoneyListView(ListAPIView):
+    queryset = SendMoney.objects.all()
+    serializer_class = SendMoneyListSerializer
+    permission_classes = [IsManager]
+ 
+class MySendMoneyListView(ListAPIView):
+    # queryset = SendMoney.objects.all()
+    serializer_class = MySendMoneyListSerializer
+    permission_classes = [IsAuthenticated]
+ 
+    def get_queryset(self):
+        return SendMoney.objects.filter(sender=self.request.user) | SendMoney.objects.filter(receiver=self.request.user)
 
 class LoanRequestView(CreateAPIView):
     queryset = LoanRequest.objects.all()

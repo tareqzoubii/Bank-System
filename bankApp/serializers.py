@@ -32,6 +32,16 @@ class SendMoneySerializer(serializers.Serializer):
         else:
             return Response({'message': 'Insufficient balance or invalid amount'}, status=status.HTTP_400_BAD_REQUEST)
 
+class SendMoneyListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SendMoney
+        fields = '__all__'
+ 
+class MySendMoneyListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SendMoney
+        fields = '__all__'
+
 class LoanRequestSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField()
     class Meta:

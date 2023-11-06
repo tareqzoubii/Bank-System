@@ -83,8 +83,12 @@ WSGI_APPLICATION = 'bankProject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'jvnjivvy',
+        'USER': 'jvnjivvy',
+        'PASSWORD': 'j7DANZ_eprh4s9aC7Lrj0usrA1bq4m22',
+        'HOST': 'suleiman.db.elephantsql.com',
+        'PORT':'5432'
     }
 }
 
