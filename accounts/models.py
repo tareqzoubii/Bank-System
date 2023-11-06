@@ -16,8 +16,6 @@ def generate_account_number():
 #         if not CustomUser.objects.filter(account_number=new_account_number).exists():
 #             return new_account_number
 
-def generate_12_digit_number():
-    return random.randint(10**11, 10**12 - 1)
 
 class CustomUser(AbstractUser):
     # account_number = models.BigIntegerField(unique=True, default=generate_account_number, editable=False)
